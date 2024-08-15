@@ -1,7 +1,9 @@
-export default function Home() {
+import LogIn from "./login/page";
+
+const Home = () => {
   return (
-    <h1>
-      Hello World!
-    </h1>
+    <LogIn />
   );
 }
+
+export default Home;
