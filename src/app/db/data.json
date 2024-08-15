@@ -20,6 +20,13 @@
       "password": "aecpsa",
       "firstName": "Sam",
       "lastName": "Smith"
+    },
+    {
+      "id": "4",
+      "email": "joao.saraiva@gmail.com",
+      "password": "123",
+      "firstName": "Joao",
+      "lastName": "Saraiva"
     }
   ],
   "posts": [

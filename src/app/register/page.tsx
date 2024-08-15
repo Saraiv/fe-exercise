@@ -1,10 +1,11 @@
 "use client"
-import { format } from "path"
 import React, { useState } from "react"
+import Link from "next/link"
+import json_data from "../db/data.json"
 
 const Register = () => {
     const [form_data, SetFormData] = useState({
-        username: "",
+        email: "",
         first_name: "",
         last_name: "",
         password: "",
@@ -24,6 +25,20 @@ const Register = () => {
         console.log("User: ", form_data)
         if (form_data.password === form_data.confirm_password) {
             console.log("Successfully registered!")
+            try {
+                const new_user = {
+                    id: String(json_data.users.length + 1),
+                    email: form_data.email,
+                    password: form_data.password,
+                    firstName: form_data.first_name,
+                    lastName: form_data.last_name,
+                }
+
+                json_data.users.push(new_user)
+                //TODO: ADD TO FILE
+            } catch (error) {
+                console.log("Error reading file: ", error)
+            }
         } else {
             console.log("Something went wrong!")
         }
@@ -37,16 +52,16 @@ const Register = () => {
             >
                 <label
                     className="w-full"
-                    htmlFor="username">
-                    Username:
+                    htmlFor="Email">
+                    Email:
                 </label>
                 <input
                     className="w-full bg-transparent mb-10"
                     type="text"
-                    id="username"
-                    name="username"
-                    placeholder="Enter username"
-                    value={form_data.username}
+                    id="email"
+                    name="email"
+                    placeholder="Enter email"
+                    value={form_data.email}
                     onChange={HandleInputChange}
                     required
                 />
@@ -111,7 +126,7 @@ const Register = () => {
                     required
                 />
                 <div
-                    className="block w-full bg-blue-300 hover:bg-opacity-95 rounded-md">
+                    className="block w-full bg-blue-300 hover:bg-opacity-95 rounded-md py-2">
                     <button
                         className="w-full"
                         type="submit"
@@ -120,6 +135,17 @@ const Register = () => {
                     </button>
                 </div>
             </form>
+            <p
+                className="w-full block">
+                Have an account already?
+                <Link
+                    replace
+                    href="/login"
+                    className="block text-xs no-underline mx-5 text-blue-300"
+                >
+                    Log in!
+                </Link>
+            </p>
         </div>
     )
 }
