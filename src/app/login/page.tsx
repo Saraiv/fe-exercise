@@ -2,6 +2,8 @@
 import React, { useState } from "react"
 import Link from "next/link"
 import json_data from "../db/data.json"
+import { cookies } from "next/headers"
+import { randomUUID } from "crypto"
 
 const LogIn = () => {
     const [form_data, SetFormData] = useState({
@@ -10,11 +12,11 @@ const LogIn = () => {
     })
 
     const HandleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
+        const { name, value } = event.target
         SetFormData({
             ...form_data,
             [name]: value,
-        });
+        })
     }
 
     const LogIntoHome = (event: React.FormEvent) => {
@@ -22,6 +24,7 @@ const LogIn = () => {
         console.log("User: ", form_data)
         json_data.users.forEach(element => {
             if (element.email === form_data.email && element.password === form_data.password) {
+                cookies().set("token", randomUUID())
                 window.location.replace("home")
             }
         })

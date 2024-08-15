@@ -35,6 +35,8 @@ const Register = () => {
                 }
 
                 json_data.users.push(new_user)
+
+                window.location.replace("home")
                 //TODO: ADD TO FILE
             } catch (error) {
                 console.log("Error reading file: ", error)
