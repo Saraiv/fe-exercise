@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Full-Stack Web Developer Interview Project
 
-## Getting Started
+## Introduction 📜
+The objective of this project is to demonstrate your capability in full-stack development by creating a web application.
+This application will include a profile page where each user can see their posts.
+The focus is on seamlessly connecting the frontend to the backend API for user management and presenting data through a clean and intuitive interface.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Objectives 🎯
+Develop a small web application using React for the frontend and json-server to simulate the backend.
+The application should feature a login section for user authentication and a profile page displaying user details along with their posts in chronological order.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Requirements ✅
+ * Implement the frontend with React (Vite).
+ * Use json-server to create a mock RESTful API with the provided data.json, containing predefined users and posts.
+ * Include a login section to authenticate users based on the email and password from the users entity in the json-server backend.
+ * After authentication, direct the user to a profile page showing their name and a list of their posts, ordered by date.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Optional Features
+ * Add functionality to add, edit, and remove posts.
+ * Implement state management to preserve application state even after page refreshes.
+ * Enhance the user interface and user experience with advanced design or frameworks. Feel free to extend the data.json file with additional fields if you find it necessary to support the application's features or improve its functionality.
+ * Develop the project using TypeScript instead of JavaScript.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Getting Started 🚀
+1. Clone this repository.
+2. Install dependencies with npm install.
+3. Launch the json-server backend using `npm run json-server`.
+4. In a separate terminal, start the frontend with `npm run dev`.
+Access the application at [http://localhost:5173](http://localhost:5173) and the backend at [http://localhost:5000](http://localhost:5000)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## General Guidelines
+ * The application should be responsive and adhere to web design and usability best practices.
+ * Document the code clearly to explain the purpose and functionality of different sections.
+ * Commit your changes incrementally to reflect the development history.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project does not have a strict deadline. However, we recommend completing it within one week.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Upon completion of the project, please send an email to the application email address with the link to your repository. 
