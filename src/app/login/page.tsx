@@ -2,8 +2,7 @@
 import React, { useState } from "react"
 import Link from "next/link"
 import json_data from "../db/data.json"
-import { cookies } from "next/headers"
-import { randomUUID } from "crypto"
+import { SetCookiesAndReplace } from "../register/register"
 
 const LogIn = () => {
     const [form_data, SetFormData] = useState({
@@ -24,7 +23,7 @@ const LogIn = () => {
         console.log("User: ", form_data)
         json_data.users.forEach(element => {
             if (element.email === form_data.email && element.password === form_data.password) {
-                cookies().set("token", randomUUID())
+                SetCookiesAndReplace()
                 window.location.replace("home")
             }
         })
