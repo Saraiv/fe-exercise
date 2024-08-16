@@ -1,11 +1,13 @@
 "use server"
 import Link from "next/link"
 import json_data from "../db/data.json"
-import { GetToken } from "./home"
+import { GetToken } from "./dashboard"
 
-const Home = () => {
+const Dashboard = () => {
+    // Get the cookie token
     const token = GetToken()
 
+    // If there's a cookie then I'll show the dashboard
     if (token) {
         return (
             <div className="block bg-stone-700 text-center w-2/3 justify-center mx-auto my-10 p-10 rounded-md">
@@ -27,6 +29,7 @@ const Home = () => {
             </div>
         )
     }
+    // If there's no cookie I'll show some text to create an account or log into the account
     else {
         return (
             <div className="w-full text-center">
@@ -39,4 +42,4 @@ const Home = () => {
 
 }
 
-export default Home
+export default Dashboard

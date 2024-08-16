@@ -5,15 +5,15 @@ import json_data from "../db/data.json"
 import { SetCookiesAndReplace } from "./login"
 import { GetToken } from "./cookies"
 
-const LogIn = async () => {
-    //const token = GeToken() 
-    //if(token) ...
+const LogIn = () => {
+    // Creating a form_data to this login page
     const [form_data, SetFormData] = useState({
         email: "",
         password: ""
     })
 
     const HandleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        // Changing everytime the form is updated
         const { name, value } = event.target
         SetFormData({
             ...form_data,
@@ -23,14 +23,17 @@ const LogIn = async () => {
 
     const LogIntoHome = async (event: React.FormEvent) => {
         event.preventDefault()
+        // I'm searching every user if the email and password are indeed inside the database
+        // and if they are set cookies token and change view
         json_data.users.forEach(async element => {
             if (element.email === form_data.email && element.password === form_data.password) {
                 await SetCookiesAndReplace()
-                window.location.replace("home")
+                window.location.replace("dashboard")
             }
         })
     }
 
+    // Form
     return (
         <div className="block bg-stone-700 text-center w-1/3 justify-center mx-auto my-10 p-10 rounded-md">
             <form

@@ -4,6 +4,7 @@ import Link from "next/link"
 import json_data from "../db/data.json"
 
 const Register = () => {
+    // Setting a basic form_data to my json
     const [form_data, SetFormData] = useState({
         email: "",
         first_name: "",
@@ -13,6 +14,7 @@ const Register = () => {
     })
 
     const HandleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        // Changing everytime the form is updated
         const { name, value } = event.target;
         SetFormData({
             ...form_data,
@@ -22,8 +24,11 @@ const Register = () => {
 
     const RegisterAccount = async (event: React.FormEvent) => {
         event.preventDefault()
+        // If the password is the same as the confirm_password
+        // then it'll continue as pretended
         if (form_data.password === form_data.confirm_password) {
             try {
+                // Creating a new user with the given information
                 const new_user = {
                     id: String(json_data.users.length + 1),
                     email: form_data.email,
@@ -32,6 +37,8 @@ const Register = () => {
                     lastName: form_data.last_name,
                 }
 
+                // Posting to the API register with the new_user 
+                // json information
                 const response = await fetch("/api/register", {
                     method: "POST",
                     headers: {
@@ -40,6 +47,9 @@ const Register = () => {
                     body: JSON.stringify(new_user),
                 })
 
+                // If everything goes accordingly to plan
+                // and the response is 200 then it goes to the
+                // login page
                 if (response.ok) {
                     window.location.replace("login")
                 } else {
@@ -53,6 +63,7 @@ const Register = () => {
         }
     }
 
+    // Form
     return (
         <div className="block bg-stone-700 text-center w-1/3 justify-center mx-auto my-10 p-10 rounded-md">
             <form
