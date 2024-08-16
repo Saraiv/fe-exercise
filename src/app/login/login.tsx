@@ -2,6 +2,6 @@
 import { randomUUID } from "crypto"
 import { cookies } from "next/headers"
 
-export const SetCookiesAndReplace = () => {
+export async function SetCookiesAndReplace() {
     cookies().set("token", randomUUID())
 }

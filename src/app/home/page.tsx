@@ -1,14 +1,11 @@
-import { cookies } from "next/headers"
+"use server"
 import Link from "next/link"
 import json_data from "../db/data.json"
-
-const GetToken = () => {
-    const token = cookies().get("token")
-    return token
-}
+import { GetToken } from "./home"
 
 const Home = () => {
     const token = GetToken()
+    console.log(token)
 
     if (token) {
         return (

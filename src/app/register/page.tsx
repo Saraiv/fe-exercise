@@ -20,11 +20,9 @@ const Register = () => {
         });
     }
 
-    const RegisterAccount = (event: React.FormEvent) => {
+    const RegisterAccount = async (event: React.FormEvent) => {
         event.preventDefault()
-        console.log("User: ", form_data)
         if (form_data.password === form_data.confirm_password) {
-            console.log("Successfully registered!")
             try {
                 const new_user = {
                     id: String(json_data.users.length + 1),
@@ -34,10 +32,19 @@ const Register = () => {
                     lastName: form_data.last_name,
                 }
 
-                json_data.users.push(new_user)
+                const response = await fetch("/api/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(new_user),
+                })
 
-                window.location.replace("home")
-                //TODO: ADD TO FILE
+                if (response.ok) {
+                    window.location.replace("login")
+                } else {
+                    console.log("API error", response)
+                }
             } catch (error) {
                 console.log("Error reading file: ", error)
             }
