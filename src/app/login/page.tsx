@@ -3,8 +3,11 @@ import React, { useState } from "react"
 import Link from "next/link"
 import json_data from "../db/data.json"
 import { SetCookiesAndReplace } from "./login"
+import { GetToken } from "./cookies"
 
-const LogIn = () => {
+const LogIn = async () => {
+    //const token = GeToken() 
+    //if(token) ...
     const [form_data, SetFormData] = useState({
         email: "",
         password: ""
@@ -20,7 +23,6 @@ const LogIn = () => {
 
     const LogIntoHome = async (event: React.FormEvent) => {
         event.preventDefault()
-        console.log("User: ", form_data)
         json_data.users.forEach(async element => {
             if (element.email === form_data.email && element.password === form_data.password) {
                 await SetCookiesAndReplace()
@@ -91,6 +93,3 @@ const LogIn = () => {
 }
 
 export default LogIn
-function GetToken() {
-    throw new Error("Function not implemented.")
-}

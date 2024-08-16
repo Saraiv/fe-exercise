@@ -5,7 +5,6 @@ import { GetToken } from "./home"
 
 const Home = () => {
     const token = GetToken()
-    console.log(token)
 
     if (token) {
         return (
