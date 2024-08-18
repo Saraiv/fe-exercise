@@ -66,6 +66,7 @@ const Register = () => {
     // Form
     return (
         <div className="block bg-stone-700 text-center w-1/3 justify-center mx-auto my-10 p-10 rounded-md">
+            <h1 className="text-white text-2xl mb-5">Register</h1>
             <form
                 className="w-full pb-10"
                 onSubmit={RegisterAccount}

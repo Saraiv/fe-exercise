@@ -11,6 +11,7 @@ const LogIn = () => {
         email: "",
         password: ""
     })
+    const [check_login, SetCheckLogin] = useState(false)
 
     const HandleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         // Changing everytime the form is updated
@@ -23,11 +24,12 @@ const LogIn = () => {
 
     const LogIntoHome = async (event: React.FormEvent) => {
         event.preventDefault()
+
         // I'm searching every user if the email and password are indeed inside the database
         // and if they are set cookies token and change view
         json_data.users.forEach(async element => {
             if (element.email === form_data.email && element.password === form_data.password) {
-                await SetCookiesAndReplace()
+                await SetCookiesAndReplace(element.email)
                 window.location.replace("dashboard")
             }
         })
@@ -36,6 +38,7 @@ const LogIn = () => {
     // Form
     return (
         <div className="block bg-stone-700 text-center w-1/3 justify-center mx-auto my-10 p-10 rounded-md">
+            <h1 className="text-white text-2xl mb-5">Login</h1>
             <form
                 className="w-full pb-10"
                 onSubmit={LogIntoHome}
