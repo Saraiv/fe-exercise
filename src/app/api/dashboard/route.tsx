@@ -30,7 +30,7 @@ export async function POST(req: NextApiRequest) {
     // General file path
     const file_path = path.join(process.cwd(), "src/app/db", "data.json")
 
-    // Adding this new user to this json_data.posts
+    // Adding the new post
     json_data.posts.push(new_post)
 
     // Writing into the json file this new information
@@ -43,11 +43,16 @@ export async function POST(req: NextApiRequest) {
 // EDIT CALL
 export async function PUT(req: NextApiRequest) {
     // Parsing the request to a json to new_user
-    const postid = await req.json()
+    const new_post = await req.json()
     // General file path
     const file_path = path.join(process.cwd(), "src/app/db", "data.json")
 
-    //TODO: Edit the given information
+    // Get the post index
+    const _postid = json_data.posts.findIndex((o) => o.id === new_post.id)
+    // Deleting so I can edit inside the DB
+    json_data.posts.splice(_postid, 1)
+    // Addid the new edited post
+    json_data.posts.push(new_post)
 
     // Writing into the json file this new information
     fs.writeFileSync(file_path, JSON.stringify(json_data, null, 2))

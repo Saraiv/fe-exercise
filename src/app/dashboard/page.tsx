@@ -17,7 +17,16 @@ const Dashboard = () => {
         return (
             <div className="block bg-stone-700 text-center w-2/3 justify-center mx-auto my-10 p-10 rounded-md">
                 <h1 className="text-white text-2xl mb-5">Hello {user_name?.firstName}</h1>
-                <DashboardButton _id={-1} text={"Add Post"} type={"ADD"} />
+                {(() => {
+                    // Find the first post where the userId matches the logged-in user's id
+                    const user = json_data.users.find(user => user.email === token.value)
+                    const userPost = json_data.posts.find(post => post.userId === user?.id)
+
+                    // If a matching post is found, return the DashboardButton
+                    if (userPost) {
+                        return <DashboardButton type={"ADD"} post={userPost} />
+                    }
+                })()}
                 {
                     json_data.posts.map((post, index) => {
                         const user = json_data.users.find(user => user.id === post.userId)
@@ -33,8 +42,8 @@ const Dashboard = () => {
                                 {
                                     isUserPost && (
                                         <div className="mt-4">
-                                            <DashboardButton _id={post.id} text={"Edit"} type={"EDIT"} />
-                                            <DashboardButton _id={post.id} text={"Remove"} type={"REMOVE"} />
+                                            <DashboardButton type={"EDIT"} post={post} />
+                                            <DashboardButton type={"REMOVE"} post={post} />
                                         </div>
                                     )
                                 }
